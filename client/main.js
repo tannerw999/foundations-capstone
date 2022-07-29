@@ -15,7 +15,7 @@ const getHighScore = () => {
             highScore.textContent = scoreData;
             username.textContent = usernameData;
         }).catch(err => console.log(err));
-};
+};//hfhgf
 
 getHighScore()
 // STEP 3: COMBINE FUNCTION WITH ELEMENT

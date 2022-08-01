@@ -9,7 +9,7 @@ const {getHighScore, updateHighScore} = require("./controller.js")
 
 
 app.get("/highScore", getHighScore) 
-// app.put("/updateHighScore", updateHighScore)
+app.put("/updateHighScore", updateHighScore)
 // app.post("/api/houses", createHouse) Put will be fine but make a post request too if have time.
 
 

@@ -9,9 +9,9 @@ const board = document.querySelector('#board')
 const baseUrl = "http://localhost:4004"
 
 const colors = ['#1abc9c', '#4efc53', '#3498db', '#9b59b6', '#ff3f34', '#f1c40f', '#f57e33', '#48dbfb']
-let currentHighScore = undefined
+let currentHighScore = 0
 let time = 0
-let score = 12
+let score = 0
 
 
 // STEP 2: WRITE FUNCTION FOR ELEMENT
@@ -23,7 +23,7 @@ const getHighScore = () => {
             let highScore = document.querySelector('#highScore')
             // let username = document.querySelector('#username')
             const scoreData = res.data[0].score;
-            const usernameData = res.data[0].username;
+            // const usernameData = res.data[0].username;
             highScore.textContent = scoreData;
             // username.textContent = usernameData;
             currentHighScore = scoreData
@@ -39,12 +39,17 @@ const updateHighScore = () => {
     axios.put(`${baseUrl}/updateHighScore`, putBody)
         .then((res) => {
             // alert(res.data);
-            console.log('update hit' + res.data[0])
+            let highScore = document.querySelector('#highScore')
+            highScore.textContent = res.data.score
+            console.log('update hit' + res.data.score)
         })
-}
+     }
+     
+let myTimer = undefined
 
 function startGame() {
-  setInterval(decreaseTime, 1000)
+//   setInterval(decreaseTime, 1000)
+  myTimer = setInterval(decreaseTime, 1000)
   createRandomCircles()
   setTime(time)
 }
@@ -52,6 +57,7 @@ function startGame() {
 function decreaseTime() {
   if (time < 1) {
     finishGame()
+    clearInterval(myTimer)
   } else {
     let current = --time
     if (current < 10) {
@@ -70,7 +76,8 @@ function finishGame() {
     if(score > currentHighScore){
         console.log('new high score')
         updateHighScore()
-    }
+    }  
+    // clear
   timeEl.parentNode.classList.add('hide')
   board.innerHTML = `
   <h1>Your score: 

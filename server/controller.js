@@ -8,8 +8,9 @@ module.exports = {
         console.log(req.body)
         
         // player.username = req.body.newUsername
-        player.score = req.body.newScore
+        player[0].score = req.body.newScore
         console.log(player)
+        console.log(player[0])
         
         res.status(200).send(player[0])
     }

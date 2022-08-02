@@ -7,9 +7,10 @@ module.exports = {
         console.log("ENDPOINT HIT")
         console.log(req.body)
         
-        player.username = req.body.newUsername
+        // player.username = req.body.newUsername
         player.score = req.body.newScore
+        console.log(player)
         
-        res.status(200).send(player)
+        res.status(200).send(player[0])
     }
 }

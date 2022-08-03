@@ -1,12 +1,12 @@
-// STEP 1: GRAB ELEMENT
-// const targetButton = document.getElementById("targetButton")
 const startBtn = document.querySelector('#start')
 const screens = document.querySelectorAll('.screen')
 const timeList = document.querySelector('#time-list')
 const timeEl = document.querySelector('#time')
 const board = document.querySelector('#board')
 
-const baseUrl = "http://localhost:4004"
+// const baseUrl = "http://localhost:4004"
+const baseUrl = "https://f25-foundations-capstone.herokuapp.com"
+
 
 const colors = ['#1abc9c', '#4efc53', '#3498db', '#9b59b6', '#ff3f34', '#f1c40f', '#f57e33', '#48dbfb']
 let currentHighScore = 0
@@ -14,18 +14,15 @@ let time = 0
 let score = 0
 
 
-// STEP 2: WRITE FUNCTION FOR ELEMENT
+
 const getHighScore = () => {
     console.log("highscore hit")
     axios.get(`${baseUrl}/highScore`)
         .then(res => {
             console.log(res.data)
             let highScore = document.querySelector('#highScore')
-            // let username = document.querySelector('#username')
             const scoreData = res.data[0].score;
-            // const usernameData = res.data[0].username;
             highScore.textContent = scoreData;
-            // username.textContent = usernameData;
             currentHighScore = scoreData
         }).catch(err => console.log(err));
 }
@@ -38,17 +35,17 @@ const updateHighScore = () => {
     console.log("new high score")
     axios.put(`${baseUrl}/updateHighScore`, putBody)
         .then((res) => {
-            // alert(res.data);
             let highScore = document.querySelector('#highScore')
             highScore.textContent = res.data.score
             console.log('update hit' + res.data.score)
         })
      }
      
+
+
 let myTimer = undefined
 
 function startGame() {
-//   setInterval(decreaseTime, 1000)
   myTimer = setInterval(decreaseTime, 1000)
   createRandomCircles()
   setTime(time)
@@ -77,7 +74,7 @@ function finishGame() {
         console.log('new high score')
         updateHighScore()
     }  
-    // clear
+   
   timeEl.parentNode.classList.add('hide')
   board.innerHTML = `
   <h1>Your score: 
@@ -124,6 +121,8 @@ function getRandomColor() {
   return colors[Math.floor(Math.random() * colors.length)]
 }
     
+
+
 startBtn.addEventListener('click', (event) => {
     event.preventDefault()
     screens[0].classList.add('up')

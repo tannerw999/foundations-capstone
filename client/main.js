@@ -4,8 +4,8 @@ const timeList = document.querySelector('#time-list')
 const timeEl = document.querySelector('#time')
 const board = document.querySelector('#board')
 
-// const baseUrl = "http://localhost:4004"
-const baseUrl = "https://f25-foundations-capstone.herokuapp.com"
+const baseUrl = "http://localhost:4004"
+// const baseUrl = "https://f25-foundations-capstone.herokuapp.com"
 
 
 const colors = ['#1abc9c', '#4efc53', '#3498db', '#9b59b6', '#ff3f34', '#f1c40f', '#f57e33', '#48dbfb']
